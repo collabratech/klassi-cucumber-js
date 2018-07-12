@@ -146,8 +146,6 @@ let paths = {
   })
 };
 
-console.log(paths.steps)
-
 // expose settings and paths for global use
 global.settings = settings;
 global.paths = paths;
