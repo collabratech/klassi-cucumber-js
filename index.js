@@ -21,17 +21,17 @@ function parseRemoteArguments(argumentString) {
   if (!argumentString) {
     throw new Error("Expected an argumentString");
   }
-  
+
   let argSplit = argumentString.split("/");
-  
+
   let CONFIG = 0;
   let TAGS = 1;
-  
+
   let parsed = {
     config: argSplit[CONFIG],
     tags: argSplit[TAGS]
   };
-  
+
   return parsed;
 }
 
@@ -90,7 +90,7 @@ program
   .option('-g, --reportName [optional]', 'basename for report files e.g. use report for report.json', global.reportName)
   .option('-x, --extraSettings [optional]','further piped configs split with pipes','')
   .option('-w, --remoteService [optional]', 'which remote driver service, if any, should be used e.g. browserstack', '')
-  
+
   .parse(process.argv);
 
 program.on('--help', function(){
@@ -107,16 +107,16 @@ let settings = {
 };
 
 if (program.remoteService && program.extraSettings){
-  
+
   let additionalSettings = parseRemoteArguments(program.extraSettings);
-  
+
   settings.remoteConfig = additionalSettings.config;
-  
+
   /* this approach supports a single string defining both the target config and tags
     e.g. 'win10-chrome/@tag1,@tag2'
    */
   if (additionalSettings.tags){
-    
+
     if (program.tags){
       throw new Error("Cannot sent two types of tags - either use -x or -t");
     }
@@ -139,7 +139,7 @@ let paths = {
   reports:getProjectPath("reports"),
   featuresPath:getProjectPath("featuresPath"),
   steps:getProjectPath("steps"),
-  
+
   // used within world.js to import shared objects into the shared namespace
   sharedObjects:program.sharedObjects.map(function(item){
     return path.resolve(settings.projectRoot+item);
@@ -183,7 +183,7 @@ process.argv.push('-r', path.resolve(__dirname, './runtime/world.js'));
 
 /** add path to import step definitions
  */
-process.argv.push('-r', path.resolve(program.steps));
+process.argv.push('-r', path.resolve(paths.steps));
 
 /** add tag to the scenarios
  */
