@@ -125,8 +125,13 @@ if (program.remoteService && program.extraSettings){
   }
 }
 
+// Ensure it ends with "/".
+if( settings.projectRoot[ settings.projectRoot.length - 1 ] != '/' ) {
+	settings.projectRoot = settings.projectRoot + '/';
+}
+
 function getProjectPath(objectName){
-  return path.resolve(settings.projectRoot+program[objectName]);
+  return path.resolve( settings.projectRoot + program[objectName]);
 }
 
 let paths = {
