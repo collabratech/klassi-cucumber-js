@@ -138,6 +138,7 @@ let paths = {
   pageObjects:getProjectPath("pageObjects"),
   reports:getProjectPath("reports"),
   featuresPath:getProjectPath("featuresPath"),
+  steps:getProjectPath("steps"),
   
   // used within world.js to import shared objects into the shared namespace
   sharedObjects:program.sharedObjects.map(function(item){
