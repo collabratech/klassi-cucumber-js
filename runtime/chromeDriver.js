@@ -18,7 +18,6 @@ module.exports = function chromeDriver(options){
       browserName: 'chrome',
       javascriptEnabled: true,
       acceptSslCerts: true,
-      deprecationWarnings: false,
       chromeOptions: {
         // args: ['--headless',
         // ],
